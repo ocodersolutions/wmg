@@ -23,6 +23,7 @@
 <link href="<?php echo get_template_directory_uri(); ?>/css/responsive.css" rel="stylesheet">
 <link href="<?php echo get_template_directory_uri(); ?>/css/themecolor.css" rel="stylesheet" id="colorswitcher">
 
+<link href="<?php echo get_template_directory_uri(); ?>/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">.fancybox-margin{margin-right:15px;}</style></head>
 
 <?php wp_head(); ?>

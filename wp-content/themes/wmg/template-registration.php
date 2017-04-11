@@ -8,6 +8,13 @@ p {
     color: #444;
     font-size: 16px;
 }
+#registration_form_verify {
+	display: none;
+}
+#registration_form_verify .form-control {
+	border: 0;
+	box-shadow: none;
+}
 </style>
 
 <?php
@@ -31,6 +38,34 @@ if(array_key_exists('registration-button', $_POST)){
 	add_user_meta($user_id, 'date_of_birth', $_POST['date_of_birth'], false);
 	add_user_meta($user_id, 'gender', $_POST['gender'], false);
 	add_user_meta($user_id, 'nationality', $_POST['nationality'], false);
+	add_user_meta($user_id, 'race', $_POST['race'], false);
+	add_user_meta($user_id, 'occupation', $_POST['occupation'], false);
+	add_user_meta($user_id, 'mobile_tel', $_POST['mobile_tel'], false);
+	add_user_meta($user_id, 'residential_address', $_POST['residential_address'], false);
+	add_user_meta($user_id, 'doctors_name', $_POST['doctors_name'], false);
+	add_user_meta($user_id, 'contact_no', $_POST['contact_no'], false);
+	add_user_meta($user_id, 'clinic_name', $_POST['clinic_name'], false);
+	add_user_meta($user_id, 'clinic_address', $_POST['clinic_address'], false);
+	add_user_meta($user_id, 'next-of-kin_no_1_name', $_POST['next-of-kin_no_1_name'], false);
+	add_user_meta($user_id, 'next-of-kin_no_1_relationship', $_POST['next-of-kin_no_1_relationship'], false);
+	add_user_meta($user_id, 'next-of-kin_no_1_contact_1', $_POST['next-of-kin_no_1_contact_1'], false);
+	add_user_meta($user_id, 'next-of-kin_no_1_contact_2', $_POST['next-of-kin_no_1_contact_2'], false);
+	add_user_meta($user_id, 'next-of-kin_no_1_email', $_POST['next-of-kin_no_1_email'], false);
+	add_user_meta($user_id, 'next-of-kin_no_2_name', $_POST['next-of-kin_no_2_name'], false);
+	add_user_meta($user_id, 'next-of-kin_no_2_relationship', $_POST['next-of-kin_no_2_relationship'], false);
+	add_user_meta($user_id, 'next-of-kin_no_2_contact_1', $_POST['next-of-kin_no_2_contact_1'], false);
+	add_user_meta($user_id, 'next-of-kin_no_2_contact_2', $_POST['next-of-kin_no_2_contact_2'], false);
+	add_user_meta($user_id, 'next-of-kin_no_2_email', $_POST['next-of-kin_no_2_email'], false);
+	add_user_meta($user_id, 'insurance_policy_no', $_POST['insurance_policy_no'], false);
+	add_user_meta($user_id, 'countries_frequently_visited', $_POST['countries_frequently_visited'], false);
+	add_user_meta($user_id, 'blood_group', $_POST['blood_group'], false);
+	add_user_meta($user_id, 'drug_and_or_food_allergies', $_POST['drug_and_or_food_allergies'], false);
+	add_user_meta($user_id, 'current_medications', $_POST['current_medications'], false);
+	add_user_meta($user_id, 'chronic_illnesses', $_POST['chronic_illnesses'], false);
+	add_user_meta($user_id, 'previous_surgeries', $_POST['previous_surgeries'], false);
+	add_user_meta($user_id, 'any_history_of_alcohol_use_or_substance_abuse', $_POST['any_history_of_alcohol_use_or_substance_abuse'], false);
+	add_user_meta($user_id, 'current_immunization_record', $_POST['current_immunization_record'], false);
+	add_user_meta($user_id, 'any_other_details_notes', $_POST['any_other_details_notes'], false);
 
 	if (!function_exists('wp_generate_attachment_metadata')){
         require_once(ABSPATH . "wp-admin" . '/includes/image.php');
@@ -93,7 +128,7 @@ if(array_key_exists('registration-button', $_POST)){
 <div class="main-content">
 	<section class="io_pt ho_pb">
         <div class="container">
-        	<form method="POST" enctype="multipart/form-data">
+        	<form method="POST" enctype="multipart/form-data" id="registration_form">
         		<div class="row">
         			<div class="col-sm-6">
 					  	<div class="form-group">
@@ -104,63 +139,63 @@ if(array_key_exists('registration-button', $_POST)){
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >2. CHINESE NAME ( IF APPLICABLE ) :</label>
-						    <input type="text" class="form-control" name="chinese_name">
+						    <input type="text" class="form-control" name="chinese_name" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >3. NRIC / PASSPORT / ID NO</label>
-						    <input type="text" class="form-control" name="nric_passport_id_no">
+						    <input type="text" class="form-control" name="nric_passport_id_no" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >4. DATE OF BIRTH</label>
-						    <input type="text" class="form-control" name="date_of_birth">
+						    <input type="text" class="form-control" name="date_of_birth" id="datepicker" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >5. GENDER ( PLEASE SELECT )</label>
 						    <br/>
-						    <label class="radio-inline"><input type="radio" name="gender" value="Male">Male</label>
+						    <label class="radio-inline"><input type="radio" name="gender" value="Male" required>Male</label>
 							<label class="radio-inline"><input type="radio" name="gender" value="Female">Female</label>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >6. NATIONALITY</label>
-						    <input type="text" class="form-control" name="nationality">
+						    <input type="text" class="form-control" name="nationality" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >7. RACE</label>
-						    <input type="text" class="form-control" name="race">
+						    <input type="text" class="form-control" name="race" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >8. OCCUPATION</label>
-						    <input type="text" class="form-control" name="occupation">
+						    <input type="text" class="form-control" name="occupation" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >9. MOBILE / TEL. NO</label>
-						    <input type="text" class="form-control" name="mobile_tel">
+						    <input type="text" class="form-control" name="mobile_tel" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >10. EMAIL ADDRESS</label>
-						    <input type="text" class="form-control" name="email_address">
+						    <input type="text" class="form-control" name="email_address" required>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
 					  	<div class="form-group">
 						    <label >11. Residential address</label>
-						    <textarea name="residential_address" rows="5" class="form-control"></textarea>
+						    <textarea name="residential_address" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
@@ -171,25 +206,25 @@ if(array_key_exists('registration-button', $_POST)){
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >DOCTOR'S NAME</label>
-						    <input type="text" class="form-control" name="doctors_name">
+						    <input type="text" class="form-control" name="doctors_name" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CONTACT NO</label>
-						    <input type="text" class="form-control" name="contact_no">
+						    <input type="text" class="form-control" name="contact_no" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CLINIC NAME</label>
-						    <input type="text" class="form-control" name="clinic_name">
+						    <input type="text" class="form-control" name="clinic_name" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CLINIC ADDRESS</label>
-						    <input type="text" class="form-control" name="clinic_address">
+						    <input type="text" class="form-control" name="clinic_address" required>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
@@ -200,31 +235,31 @@ if(array_key_exists('registration-button', $_POST)){
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >NAME</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_1_name">
+						    <input type="text" class="form-control" name="next-of-kin_no_1_name" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >RELATIONSHIP</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_1_relationship">
+						    <input type="text" class="form-control" name="next-of-kin_no_1_relationship" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CONTACT NO . 1</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_1_contact_1">
+						    <input type="text" class="form-control" name="next-of-kin_no_1_contact_1" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CONTACT NO . 2</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_1_contact_2">
+						    <input type="text" class="form-control" name="next-of-kin_no_1_contact_2" required>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
 					  	<div class="form-group">
 						    <label >Email Address</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_1_email">
+						    <input type="text" class="form-control" name="next-of-kin_no_1_email" required>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
@@ -235,55 +270,55 @@ if(array_key_exists('registration-button', $_POST)){
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >NAME</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_2_name">
+						    <input type="text" class="form-control" name="next-of-kin_no_2_name" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >RELATIONSHIP</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_2_relationship">
+						    <input type="text" class="form-control" name="next-of-kin_no_2_relationship" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CONTACT NO . 1</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_2_contact_1">
+						    <input type="text" class="form-control" name="next-of-kin_no_2_contact_1" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >CONTACT NO . 2</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_2_contact_2">
+						    <input type="text" class="form-control" name="next-of-kin_no_2_contact_2" required>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
 					  	<div class="form-group">
 						    <label >Email Address</label>
-						    <input type="text" class="form-control" name="next-of-kin_no_2_email">
+						    <input type="text" class="form-control" name="next-of-kin_no_2_email" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >15. INSURANCE POLICY NO. ( OPTIONAL )</label>
-						    <input type="text" class="form-control" name="insurance_policy_no">
+						    <input type="text" class="form-control" name="insurance_policy_no" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >16. COUNTRIES FREQUENTLY VISITED</label>
-						    <input type="text" class="form-control" name="countries_frequently_visited">
+						    <input type="text" class="form-control" name="countries_frequently_visited" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >17. BLOOD GROUP</label>
-						    <input type="text" class="form-control" name="blood_group">
+						    <input type="text" class="form-control" name="blood_group" required>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >18. DRUG AND/OR FOOD ALLERGIES ( STATE ALL, IF ANY )</label>
-						    <input type="text" class="form-control" name="drug_and_or_food_allergies">
+						    <input type="text" class="form-control" name="drug_and_or_food_allergies" required>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
@@ -294,37 +329,37 @@ if(array_key_exists('registration-button', $_POST)){
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >A. CURRENT MEDICATIONS</label>
-						    <textarea name="current_medications" rows="5" class="form-control"></textarea>
+						    <textarea name="current_medications" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >B. CHRONIC ILLNESSES ( IF ANY )</label>
-						    <textarea name="chronic_illnesses" rows="5" class="form-control"></textarea>
+						    <textarea name="chronic_illnesses" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >C. PREVIOUS SURGERIES ( STATE ALL, IF ANY )</label>
-						    <textarea name="previous_surgeries" rows="5" class="form-control"></textarea>
+						    <textarea name="previous_surgeries" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >D. ANY HISTORY OF ALCOHOL USE OR SUBSTANCE ABUSE</label>
-						    <textarea name="any_history_of_alcohol_use_or_substance_abuse	" rows="5" class="form-control"></textarea>
+						    <textarea name="any_history_of_alcohol_use_or_substance_abuse" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >E. CURRENT IMMUNIZATION RECORD ( IF AVAILABLE )</label>
-						    <textarea name="current_immunization_record" rows="5" class="form-control"></textarea>
+						    <textarea name="current_immunization_record" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-6">
 					  	<div class="form-group">
 						    <label >20. ANY OTHER DETAILS / NOTES</label>
-						    <textarea name="any_other_details_notes" rows="5" class="form-control"></textarea>
+						    <textarea name="any_other_details_notes" rows="5" class="form-control" required></textarea>
 					  	</div>
 					</div>
 					<div class="col-sm-12">
@@ -354,7 +389,259 @@ if(array_key_exists('registration-button', $_POST)){
 					<div class="col-sm-6">
 			  			<button type="submit" name="registration-button" class="btn btn-default">Submit</button>
 			  		</div>
+			  	</div>
 			</form>
+			<div class="row" id="registration_form_verify">
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>1. FULL NAME [ AS IN PASSPORT/NRIC ] :</label>
+					    <label class="form-control" data-verify="fullname"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>2. CHINESE NAME ( IF APPLICABLE ) :</label>
+					    <label class="form-control" data-verify="chinese_name"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>3. NRIC / PASSPORT / ID NO:</label>
+					    <label class="form-control" data-verify="nric_passport_id_no"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>4. DATE OF BIRTH:</label>
+					    <label class="form-control" data-verify="date_of_birth"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>5. GENDER ( PLEASE SELECT ) :</label>
+					    <label class="form-control" data-verify="gender"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>6. NATIONALITY:</label>
+					    <label class="form-control" data-verify="nationality"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>7. RACE:</label>
+					    <label class="form-control" data-verify="race"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>8. OCCUPATION:</label>
+					    <label class="form-control" data-verify="occupation"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>9. MOBILE / TEL. NO:</label>
+					    <label class="form-control" data-verify="mobile_tel"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>10. EMAIL ADDRESS:</label>
+					    <label class="form-control" data-verify="email_address"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>11. Residential address:</label>
+					    <label class="form-control" data-verify="residential_address"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>12. Family Doctor</label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>DOCTOR'S NAME:</label>
+					    <label class="form-control" data-verify="doctors_name"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CONTACT NO:</label>
+					    <label class="form-control" data-verify="contact_no"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CLINIC NAME:</label>
+					    <label class="form-control" data-verify="clinic_name"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CLINIC ADDRESS:</label>
+					    <label class="form-control" data-verify="clinic_address"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>13. Next-of-Kin No. 1</label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>NAME:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_1_name"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>RELATIONSHIP:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_1_relationship"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CONTACT NO . 1:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_1_contact_1"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CONTACT NO . 2:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_1_contact_2"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>Email Address:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_1_email"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>14. Next-of-Kin No. 2</label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>NAME:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_2_name"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>RELATIONSHIP:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_2_relationship"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CONTACT NO . 1:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_2_contact_1"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>CONTACT NO . 2:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_2_contact_2"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>Email Address:</label>
+					    <label class="form-control" data-verify="next-of-kin_no_2_email"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>15. INSURANCE POLICY NO. ( OPTIONAL ):</label>
+					    <label class="form-control" data-verify="insurance_policy_no"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>16. COUNTRIES FREQUENTLY VISITED:</label>
+					    <label class="form-control" data-verify="countries_frequently_visited"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>17. BLOOD GROUP:</label>
+					    <label class="form-control" data-verify="blood_group"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>18. DRUG AND/OR FOOD ALLERGIES ( STATE ALL, IF ANY ):</label>
+					    <label class="form-control" data-verify="drug_and_or_food_allergies"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<div class="form-group">
+					    <label>19. Current Health Condition</label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>A. CURRENT MEDICATIONS:</label>
+					    <label class="form-control" data-verify="current_medications"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>B. CHRONIC ILLNESSES ( IF ANY ):</label>
+					    <label class="form-control" data-verify="chronic_illnesses"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>C. PREVIOUS SURGERIES ( STATE ALL, IF ANY ):</label>
+					    <label class="form-control" data-verify="previous_surgeries"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>D. ANY HISTORY OF ALCOHOL USE OR SUBSTANCE ABUSE:</label>
+					    <label class="form-control" data-verify="any_history_of_alcohol_use_or_substance_abuse"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>E. CURRENT IMMUNIZATION RECORD ( IF AVAILABLE ):</label>
+					    <label class="form-control" data-verify="current_immunization_record"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>20. ANY OTHER DETAILS / NOTES:</label>
+					    <label class="form-control" data-verify="any_other_details_notes"></label>
+				  	</div>
+				</div>
+				<div class="col-sm-12">
+				  	<hr>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <label>UPLOAD YOUR PHOTO:</label>
+					    <label class="form-control has_img" data-verify="avatar">
+					    	<img src="">
+					    </label>
+				  	</div>
+				</div>
+				<div class="col-sm-6">
+				  	<div class="form-group">
+					    <span class="btn btn-default" id="verify_button">Verify</button>
+				  	</div>
+				  	<div class="form-group">
+					    <span class="btn btn-default" id="back_button">Back</button>
+				  	</div>
+				</div>
+			</div>
         </div>
     </section>
 </div>
@@ -376,3 +663,49 @@ if(array_key_exists('registration-button', $_POST)){
 
 
 <?php get_footer(); ?>
+
+
+<script type="text/javascript">
+	var check = 0;
+	$("#registration_form").submit(function(e){
+		if(check == 0) {
+		    e.preventDefault();
+	    }
+	    
+	    $(this).slideUp(1000);
+	    $("html, body").animate({ scrollTop: 0 }, 1000);
+	    $("#registration_form_verify").slideDown(1000);
+	    // var data_form = $(this).serialize();
+	    var data_form = $(this).serializeArray();
+	    console.log(data_form);
+	    for(var i = 0; i < data_form.length; i++) {
+	      var data_element = $("#registration_form_verify label[data-verify='"+data_form[i].name+"']");
+	      
+	      if(data_element.hasClass("has_img")) {
+	      	data_element.find("img").attr("src",data_form[i].value);
+	      }
+	      else {
+	      	data_element.html(data_form[i].value);
+	      }
+	    }
+	    
+
+	    return false;
+	});
+
+	$("#verify_button").click(function(){
+		// check = 1;
+		$("#registration_form").submit();
+	});
+
+	$("#back_button").click(function(){
+		$("#registration_form").slideDown(1000);
+		$("html, body").animate({ scrollTop: 0 }, 1000);
+		$("#registration_form_verify").slideUp(1000);
+	});
+
+
+    $( function() {
+		$( "#datepicker" ).datepicker();
+	} );
+</script>         
