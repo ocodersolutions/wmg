@@ -1,9 +1,14 @@
 <?php 
 /* Template Name: Registration */ 
 get_header(); 
-
-
 ?>
+
+<style type="text/css">
+p {
+    color: #444;
+    font-size: 16px;
+}
+</style>
 
 <?php
 // var_dump($_POST);
@@ -321,6 +326,23 @@ if(array_key_exists('registration-button', $_POST)){
 						    <label >20. ANY OTHER DETAILS / NOTES</label>
 						    <textarea name="any_other_details_notes" rows="5" class="form-control"></textarea>
 					  	</div>
+					</div>
+					<div class="col-sm-12">
+						<hr>
+					</div>
+					<div class="col-sm-12">
+						<p>23. You hereby consent to Worldwide Medical Group Pte Ltd collecting and retain the data provided in this form and/or by your appointed participating medical practitioner. Our retention of such data is governed by the Singapore Personal Data Protection Act 2012 and our prevailing privacy policy which will be provided to you upon request or can be accessed at www.worldwidemedicalgroup.com.sg.</p>
+						<p>24. You consent to us using, and disclosing to our service providers, the data provided in paragraph 1 to 8 above for the purposes of processing and administration of our membership records, and to contact you via the contact information provided by you, for such purposes.</p>
+						<p>25. You also consent to us disclosing the data provided in this form and/or your appointed medical practitioner to: ( a ) your appointed participating medical practitioners (or their assisting allied health professionals); and ( b ) for the purposes of rendering emergency medical treatment to you, any other of our participat ing medical practitioners (or their assisting allied health professionals) who is given your personal identification number by yourself or any third party whom is able to provide the said participating medical practitioners (or their assisting allied health professionals) with your personal identification number.</p>
+						<p>26. You are entitled to instruct Worldwide Medical Group Pte Ltd to remove your records at any time. In such event, Worldwide Medical Group Pte Ltd shall cease to be in a position to provide its services to you and you shall not be entitled to any refund of any fees paid.</p>
+						<p>27. You are entitled to correct and/or update the data provided in paragraphs 1 to 16 above at any time.</p>
+						<p>28. You are entitled to correct and/or update the data provided in paragraphs 17 to 20 preferably with the confirmation of your appointed participating medical practitioner.</p>
+						<p>29. You are entitled to correct any data provided by your appointed participating medical practitioner only with the consent of that participating medical practitioner. You are, however, entitled to include in the data either the alternative opinion of another participating medical practitioner and/or your comments as to why you disagree with such data.</p>
+						<p>30. You are encouraged to keep your medical records up to date with us at all times.</p>
+						<p>31. Worldwide Medical Group Pte Ltd's sole obligation is to store your data, and make it available in accordance with our terms of service and service level obligations. Worldwide Medical Group Pte Ltd assumes no liability for the accuracy of the information provided by you and/or a participating medical practitioner and/or any injury or damages arising from such inaccuracies).</p>
+					</div>
+					<div class="col-sm-12">
+						<hr>
 					</div>
 					<div class="col-sm-6">
 					 	<div class="form-group">
