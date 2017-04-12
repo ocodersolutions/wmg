@@ -453,10 +453,10 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 function custom_post_type() {
 
     $labels = array(
-        'name'                  => _x( 'Medical Data Records', 'Post Type General Name', 'wmg_domain' ),
-        'singular_name'         => _x( 'Medical Data Record', 'Post Type Singular Name', 'wmg_domain' ),
-        'menu_name'             => __( 'Medical Data Records', 'wmg_domain' ),
-        'name_admin_bar'        => __( 'Medical Data Records', 'wmg_domain' ),
+        'name'                  => _x( 'Adoption List', 'Post Type General Name', 'wmg_domain' ),
+        'singular_name'         => _x( 'Adoption List', 'Post Type Singular Name', 'wmg_domain' ),
+        'menu_name'             => __( 'Adoption Lists', 'wmg_domain' ),
+        'name_admin_bar'        => __( 'Adoption Lists', 'wmg_domain' ),
         'archives'              => __( 'Item Archives', 'wmg_domain' ),
         'attributes'            => __( 'Item Attributes', 'wmg_domain' ),
         'parent_item_colon'     => __( 'Parent Item:', 'wmg_domain' ),
@@ -482,8 +482,8 @@ function custom_post_type() {
         'filter_items_list'     => __( 'Filter items list', 'wmg_domain' ),
     );
     $args = array(
-        'label'                 => __( 'Medical Data Record', 'wmg_domain' ),
-        'description'           => __( 'Medical Data Records', 'wmg_domain' ),
+        'label'                 => __( 'Adoption List', 'wmg_domain' ),
+        'description'           => __( 'Adoption Lists', 'wmg_domain' ),
         'labels'                => $labels,
         'supports'              => array( ),
         'taxonomies'            => array( 'category', 'post_tag' ),
@@ -500,9 +500,88 @@ function custom_post_type() {
         'publicly_queryable'    => true,
         'capability_type'       => 'page',
     );
-    register_post_type( 'medical_data_records', $args );
+    register_post_type( 'adoption_list', $args );
 
 }
 add_action( 'init', 'custom_post_type', 0 );
 
+require_once( ABSPATH . 'phpmailer/PHPMailerAutoload.php' );
+
+function check_values($post_ID, $post_after, $post_before){
+    // echo 'Post ID:';
+    // var_dump($post_ID);
+
+    // echo 'Post Object AFTER update:';
+    // var_dump($post_after);
+
+    // echo 'Post Object BEFORE update:';
+    // var_dump($post_before);
+    // die;
+    $adoption_list = new WP_Query(
+        array(
+            'post_type' => 'adoption_list',
+            'post_status' => 'publish'
+        )
+    );
+    $arrlist = $adoption_list->posts;
+    foreach ($arrlist as $p_value) {
+        var_dump(get_post_meta($p_value->ID, 'email', true));
+    }
+    // var_dump($arrlist); 
+    // define('WP_USE_THEMES', true);
+
+    /** Loads the WordPress Environment and Template */
+    // require ('./phpmailer/PHPMailerAutoload.php');
+
+    $mail = new PHPMailer; 
+
+    $mail->SMTPDebug = 3;    
+
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'testdevocoder1@gmail.com';                 // SMTP username
+    $mail->Password = 'Toan2251993';                           // SMTP password
+    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                    // TCP port to connect to
+
+    $mail->setFrom('trungstormsix@gmail.com', 'Admin');
+    $mail->addAddress('stoannguyen2205@gmail.com', 'Toan');     // Add a recipient
+    $mail->addReplyTo('trungstormsix@gmail.com', 'Information');
+    $mail->addCC('cc@example.com');
+    $mail->addBCC('bcc@example.com');
+
+    // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+    $mail->isHTML(true);                                  // Set email format to HTML
+
+    $mail->Subject = 'Here is the subject';
+    $mail->Body    = '<div><h1>Test Email Template</h1><p>Name: My Name</p><p>Acct number: $2</p><p>Hello, your request for a loan has been $3</p><p>Have a nice day</p></div>';
+
+    if(!$mail->send()) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        echo 'Message has been sent';
+    }
+
+
+    ?>
+    <!-- <div>
+        <h1>Test Email Template</h1>
+        <p>Name: My Name</p>
+        <p>Acct number: $2</p>
+        <p>Hello, your request for a loan has been $3</p>
+        <p>Have a nice day</p>
+    </div> -->
+
+    <?php
+
+
+    die;
+
+    
+}
+
+add_action( 'post_updated', 'check_values', 10, 3 ); //don't forget the last argument to allow all three arguments of the function
 ?>
